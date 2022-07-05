@@ -1,0 +1,114 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.brown.moneytree"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.compose.get()
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    // kotlin
+    implementation libs.org.jetbrains.kotlin.kotlin.stdlib
+
+    implementation libs.androidx.core.core.ktx
+
+    // Compose
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.material
+    implementation libs.androidx.compose.ui.ui.tooling.preview
+    implementation libs.androidx.compose.material.material.icons.extended
+
+    // More for Compose
+    implementation libs.androidx.activity.activity.compose
+    implementation libs.androidx.lifecycle.lifecycle.viewmodel.compose
+    implementation libs.androidx.navigation.navigation.compose
+    implementation libs.androidx.hilt.hilt.navigation.compose
+
+    // Lifecycle
+    implementation libs.androidx.lifecycle.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.lifecycle.process
+
+    // Room
+    implementation libs.androidx.room.room.ktx
+    kapt libs.androidx.room.room.compiler
+
+    // Work Manager
+    implementation libs.androidx.work.work.runtime.ktx
+    implementation libs.androidx.hilt.hilt.work
+
+    // Hilt
+    implementation libs.com.google.dagger.hilt.android
+    kapt libs.com.google.dagger.hilt.compiler
+
+    // Retrofit
+    implementation libs.com.squareup.retrofit2.retrofit
+    implementation libs.com.squareup.retrofit2.converter.moshi
+    implementation libs.com.squareup.retrofit2.converter.scalars
+    implementation libs.com.squareup.okhttp3.logging.interceptor
+
+    // Moshi
+    implementation libs.com.squareup.moshi.moshi.kotlin
+    kapt libs.com.squareup.moshi.moshi.kotlin.codegen
+
+    // Coil
+    implementation libs.io.coil.kt.coil
+    implementation libs.io.coil.kt.coil.compose
+
+    implementation libs.com.jakewharton.timber
+
+    coreLibraryDesugaring libs.com.android.tools.desugar.jdk.libs
+
+    debugImplementation libs.com.squareup.leakcanary.leakcanary.android
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.espresso.core
+    androidTestImplementation libs.androidx.compose.ui.ui.test.junit4
+    debugImplementation libs.androidx.compose.ui.ui.tooling
+    debugImplementation libs.androidx.compose.ui.ui.test.manifest
+}
