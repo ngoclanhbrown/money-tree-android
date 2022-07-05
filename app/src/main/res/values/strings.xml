@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Money Tree</string>
+
+    <string name="label_home">Home</string>
+    <string name="label_transaction">Transaction</string>
+    <string name="label_planning">Planning</string>
+    <string name="label_account">Account</string>
+
+    <string name="cp_home">Home</string>
+    <string name="cp_transaction">Transaction</string>
+    <string name="cp_planning">Planning</string>
+    <string name="cp_account">Account</string>
 </resources>
